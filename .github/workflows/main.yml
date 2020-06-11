@@ -47,8 +47,6 @@ jobs:
       run: python3 `which scons` build -j2
     - name: Test Cantera
       run: python3 `which scons` test
-    - name: Run Test Problems
-      run: python3 `which scons` test_problems
     - name: Run Samples
       run: python3 `which scons` samples
 
@@ -84,8 +82,6 @@ jobs:
         optimize=n -j2
     - name: Test Cantera
       run: python3 `which scons` test
-    - name: Run Test Problems
-      run: python3 `which scons` test_problems
     - name: Run Samples
       run: python3 `which scons` samples
     # - name: Run Coverage report
@@ -159,9 +155,6 @@ jobs:
       - name: Test Cantera
         run: scons test
         shell: bash -l {0}
-      - name: Run Test Problems
-        run: scons test_problems
-        shell: bash -l {0}
       - name: Run Samples
         run: scons samples
         shell: bash -l {0}
@@ -189,8 +182,6 @@ jobs:
       run: python3 `which scons` build f90_interface=n python_package='full' -j2
     - name: Test Cantera
       run: python3 `which scons` test
-    - name: Run Test Problems
-      run: python3 `which scons` test_problems
     - name: Run Samples
       run: python3 `which scons` samples
 
@@ -239,7 +230,5 @@ jobs:
         shell: cmd
       - name: Test Cantera
         run: scons test
-      - name: Run Test Problems
-        run: scons test_problems
       - name: Run Samples
         run: scons samples
