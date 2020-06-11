@@ -70,8 +70,7 @@ jobs:
         architecture: x64
     - name: Install Apt dependencies
       run: |
-        sudo apt-get install libboost-dev gfortran libsundials-serial-dev \
-        liblapack-dev libblas-dev
+        sudo apt-get install libboost-dev gfortran liblapack-dev libblas-dev
     - name: Upgrade pip
       run: python3 -m pip install -U pip setuptools
     - name: Install Python dependencies
