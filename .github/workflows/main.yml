@@ -88,13 +88,17 @@ jobs:
       run: python3 `which scons` test_problems
     - name: Run Samples
       run: python3 `which scons` samples
-    - name: Run Coverage report
-      run: gcovr -r . -j 2 --xml coverage.xml --print-summary
+    # - name: Run Coverage report
+    #   run: gcovr -r . -j 2 --xml coverage.xml --print-summary
+    # - name: Upload Coverage to Codecov
+    #   uses: codecov/codecov-action@v1
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     file: ./coverage.xml
     - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
+      run: bash <(curl -s https://codecov.io/bash)
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   ubuntu-1604-py2:
     # Ubuntu 16.04 using Python 2 to run SCons and the system Python 3 for the interface
