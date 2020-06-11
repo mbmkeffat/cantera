@@ -1,6 +1,18 @@
-name: Continuous Integration
+name: CI
 
-on: [push]
+on:
+  push:
+    # Build on tags that look like releases
+    tags:
+      - v*
+    # Build when master or testing is pushed to
+    branches:
+      - master
+      - testing
+  pull_request:
+    # Build when a pull request targets master
+    branches:
+      - master
 
 jobs:
   multiple-pythons:
