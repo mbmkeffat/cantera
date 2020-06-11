@@ -71,13 +71,17 @@ jobs:
         python-version: '3.8'
         architecture: x64
     - name: Install Apt dependencies
-      run: sudo apt-get install libboost-dev gfortran
+      run: |
+        sudo apt-get install libboost-dev gfortran libsundials-serial-dev \
+        liblapack-dev libblas-dev
     - name: Upgrade pip
       run: python3 -m pip install -U pip setuptools
     - name: Install Python dependencies
       run: python3 -m pip install ruamel.yaml scons numpy cython gcovr h5py
     - name: Build Cantera
-      run: python3 `which scons` build -j2 coverage=y optimize=n
+      run: |
+        python3 `which scons` build blas_lapack_libs=lapack,blas coverage=y \
+        optimize=n -j2
     - name: Test Cantera
       run: python3 `which scons` test
     - name: Run Test Problems
@@ -102,12 +106,15 @@ jobs:
         with:
           submodules: recursive
       - name: Install Apt dependencies
-        run: sudo apt-get install libboost-dev gfortran scons python3-numpy python3-pip python3-setuptools
+        run: |
+          sudo apt-get install libboost-dev gfortran scons python3-numpy \
+          python3-pip python3-setuptools libsundials-serial-dev liblapack-dev \
+          libblas-dev
       - name: Install Python dependencies
         run: |
           sudo -H /usr/bin/python3 -m pip install ruamel.yaml cython h5py
       - name: Build Cantera
-        run: scons build python_cmd=/usr/bin/python3 -j2
+        run: scons build python_cmd=/usr/bin/python3 blas_lapack_libs=lapack,blas -j2
       - name: Test Cantera
         run: scons test
       - name: Run Test Problems
