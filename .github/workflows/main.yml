@@ -81,8 +81,8 @@ jobs:
         optimize=n -j2
     - name: Test Cantera
       run: python3 `which scons` test
-    - name: Run Samples
-      run: python3 `which scons` samples
+    # - name: Run Samples
+    #   run: python3 `which scons` samples
     # - name: Run Coverage report
     #   run: gcovr -r . -j 2 --xml coverage.xml --print-summary
     # - name: Upload Coverage to Codecov
